@@ -210,35 +210,10 @@ int main(int argc, char* argv[]) {
 					outputKeyPress(1,BTN_TR, isPressed);
 					break;
 				case KEY_2:
-					/* handle combination */
-					if (keyStates[KEY_4] && xarcdev.ev[ctr].value) {
-						uinput_kbd_write(&uinp_kbd, KEY_TAB, 1, EV_KEY);
-						uinput_kbd_sleep();
-						uinput_kbd_write(&uinp_kbd, KEY_TAB, 0, EV_KEY);
-						combo = 2;
-						continue;
-					}
-					/* it's a key down, ignore */
-					if (xarcdev.ev[ctr].value)
-						continue;
-					if (!combo) {
-						outputKeyPress(1,BTN_START, 1);
-						uinput_gpad_sleep();
-						outputKeyPress(1,BTN_START, 0);
-					} else
-						combo--;
+					outputKeyPress(1,BTN_START, isPressed);
 					break;
 				case KEY_4:
-					/* it's a key down, ignore */
-					if (xarcdev.ev[ctr].value)
-						continue;
-					if (!combo) {
-						outputKeyPress(1,BTN_SELECT, 1);
-						uinput_gpad_sleep();
-						outputKeyPress(1,BTN_SELECT, 0);
-					} else
-						combo--;
-
+					outputKeyPress(1,BTN_SELECT, isPressed);
 					break;
 
 					/* joystick */
